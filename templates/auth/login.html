@@ -1,0 +1,70 @@
+{% extends "layout/layout.html" %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+
+<body>
+  <div>
+    <nav class="navbar navbar-expand-xl">
+      <div class="container h-100">
+        <a class="navbar-brand" href="index.html">
+          <h1 class="tm-site-title mb-0">Blood Bank</h1>
+        </a>
+        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-bars tm-nav-icon"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-12 mx-auto tm-login-col">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="tm-block-title mb-4">Welcome to Blood Bank Database, Login</h2>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <form action="/auth/login" method="post" class="tm-login-form">
+                <div class="form-group">
+                  <label for="username">Email</label>
+                  <input name="email" type="email" name="email" class="form-control validate" id="email" value=""
+                    required />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="password">Password</label>
+                  <input name="password" type="password" name="password" class="form-control validate" id="password"
+                    value="" required />
+                </div>
+                <div class="form-group mt-4">
+                  <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                    Login
+                  </button>
+                </div>
+              </form>
+              <a href="/auth/register" type="submit" class="btn btn-primary btn-block text-uppercase">
+                New member? Register
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="tm-footer row tm-mt-small">
+    <div class="col-12 font-weight-light">
+      <p class="text-center text-white mb-0 px-4 small">
+        Copyright &copy; <b>2021</b> All rights reserved. <b> Blood Bank </b>
+      </p>
+    </div>
+  </footer>
+
+</body>
+{% endblock %}

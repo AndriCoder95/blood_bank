@@ -1,0 +1,99 @@
+{% extends "layout/layout.html" %}
+{% block title %}Register Page - Blood Bank{% endblock %}
+
+{% block body %}
+
+<body>
+  <div>
+    <nav class="navbar navbar-expand-xl">
+      <div class="container h-100">
+        <a class="navbar-brand" href="index.html">
+          <h1 class="tm-site-title mb-0">Blood Bank</h1>
+        </a>
+        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-bars tm-nav-icon"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-12 mx-auto tm-login-col">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="tm-block-title mb-4">Welcome to Blood Bank Database, Register here</h2>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <form action="/auth/register" method="post" class="tm-login-form">
+                <div class="form-group">
+                  <label for="fullname">Full Name</label>
+                  <input type="text" name="fullName" class="form-control validate" id="fullname" value="" required />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="email">Email</label>
+                  <input name="email" type="email" class="form-control validate" id="email" value="" required />
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input name="address" type="text" class="form-control validate" id="address" value="" required />
+                </div>
+                <div class="form-group">
+                  <label for="number">Contact Number</label>
+                  <input name="contact" type="text" class="form-control validate" id="number" value="" required />
+                </div>
+                <div class="form-group">
+                  <label for="bloodgroup">Blood Group</label>
+                  <select name="bloodType" class="custom-select">
+                    <option value="o_positive">O+</option>
+                    <option value="o_negative">O-</option>
+                    <option value="a_positive">A+</option>
+                    <option value="a_negative">A-</option>
+                    <option value="b_positive">B+</option>
+                    <option value="b_negative">B-</option>
+                    <option value="ab_positive">AB+</option>
+                    <option value="ab_negative">AB-</option>
+                  </select>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="password">Password</label>
+                  <input name="password" type="password" class="form-control validate" id="password" value=""
+                    required />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="passwordr">Repeat Password</label>
+                  <input name="passwordr" type="password" class="form-control validate" id="passwordr" value=""
+                    required />
+                </div>
+                <div class="form-group mt-4">
+                  <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                    Register
+                  </button>
+                </div>
+
+
+
+              </form>
+              <a href="/auth/login" type="submit" class="btn btn-primary btn-block text-uppercase">
+                Already a member? Login
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="tm-footer row tm-mt-small">
+    <div class="col-12 font-weight-light">
+      <p class="text-center text-white mb-0 px-4 small">
+        Copyright &copy; <b>2021</b> All rights reserved. <b> Blood Bank </b>
+      </p>
+    </div>
+  </footer>
+</body>
+{% endblock %}
