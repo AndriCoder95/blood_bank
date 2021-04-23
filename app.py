@@ -7,10 +7,14 @@ from database.models.user import User, PrivacyEnum
 from database.models.notifications import Notification, NotificationEnum
 from sqlalchemy.sql.expression import func, select
 from helper import blood_group_change, privacy_helper, blood_group_change_reverse
+from sys import platform
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/g.db"
+if platform == "win32" or platform == "cygwin":
+    app.config["SQLALCHEMY_DATABASE_URI"] = r'sqlite:///C:\temp\g.db'
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/g.db"
 db.init_app(app)
 
 # registering blueprint
