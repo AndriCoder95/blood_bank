@@ -8,7 +8,7 @@ class NotificationEnum(enum.Enum):
     accepted = "accepted"
     pending = "pending"
 
-
+#Notification to request donor information
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

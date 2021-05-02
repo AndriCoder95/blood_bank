@@ -1,11 +1,12 @@
 {% extends "layout/layout.html" %}
 
-
+<!-- Home Page (for logged in person), change the title tag -->
 {% block title %}Home{% endblock %}
 
 {% block body %}
 
 <body id="reportsPage">
+<!--Navbar (top of page) with links to subdirectories -->
     <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
             <a class="navbar-brand" href="/">
@@ -112,9 +113,11 @@
                             <tbody>
                                 <tr>
                                     {% for donor in donors %}
+                                        <!--Request contact details for private users -->
                                     <form action="/" method="post">
 
                                         <th scope="row"><b>{{ donor.blood_type }}</b></th>
+                                    <!-- user email that is asked for when submit button below is clicked! -->
                                         <input type="text" style="display: none;" value="{{donor.email}}"
                                             name="requested_user" />
 

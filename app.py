@@ -35,6 +35,8 @@ def index():
     if user_id is None:
         return redirect(url_for("login.login"))
 
+    # enable the user to request information of another donor if this other donor is in private mode
+    # Sends a notification to the other donor, his email is returned as requested user from the client
     if request.method == "POST":
         try:
             requesting_user = g.user
@@ -42,6 +44,7 @@ def index():
             requested_user = User.query.filter_by(email=requested_user_email).first()
             if not requested_user:
                 flash("Invalid user")
+            # request the donor for his private information
             else:
                 notification = Notification(
                     requesting_user=requesting_user, requested_to=requested_user
@@ -67,6 +70,7 @@ def index():
             func.lower(User.address) == func.lower(address)
         )
 
+    # Limit the number of donors displayed on the homepage to 10 (due to privacy reasons)
     random_donors = random_donors.limit(10)
 
     donors = []
@@ -101,6 +105,7 @@ def index():
     if not address:
         address = ""
     selected_values = {"blood_type": blood_type_old, "address": address}
+    # HTML template for home page.
     return render_template(
         "blood/index.html", user=g.user, donors=donors, selected_values=selected_values
     )
