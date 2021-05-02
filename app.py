@@ -1,3 +1,4 @@
+# Import the necessary libraries, classes & helper functions from other files
 from flask import Flask, render_template, session, redirect, url_for, g, request, flash
 from views.auth.login import login_route
 from views.auth.register import register_route
@@ -9,8 +10,10 @@ from sqlalchemy.sql.expression import func, select
 from helper import blood_group_change, privacy_helper, blood_group_change_reverse
 from sys import platform
 
-
+# Create an instance of class Flask
 app = Flask(__name__)
+
+# Make sure database queries work on different operating systems (db file stored in a temporary folder)
 if platform == "win32" or platform == "cygwin":
     app.config["SQLALCHEMY_DATABASE_URI"] = r'sqlite:///C:\temp\g.db'
 else:
@@ -24,10 +27,11 @@ app.register_blueprint(notification_route)
 
 app.secret_key = "SECRET_KEY"
 
-
+# starting page. Frontend is based on layout.html and index.html in the template folder
 @app.route("/", methods=["GET", "POST"])
 def index():
     user_id = session.get("user_id")
+    # check if user is logged in, otherwise redirect to login page (leveraging the blueprint)
     if user_id is None:
         return redirect(url_for("login.login"))
 

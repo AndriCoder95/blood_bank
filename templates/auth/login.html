@@ -1,6 +1,6 @@
 {% extends "layout/layout.html" %}
 
-
+<!--Adapt the title tag -->
 {% block title %}Login{% endblock %}
 
 {% block body %}
@@ -32,6 +32,7 @@
           </div>
           <div class="row mt-2">
             <div class="col-12">
+                <!--Form for login -->
               <form action="/auth/login" method="post" class="tm-login-form">
                 <div class="form-group">
                   <label for="username">Email</label>
