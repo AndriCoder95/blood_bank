@@ -1,5 +1,6 @@
 from database.models.user import BloodGroupEnum, PrivacyEnum
 
+# Helper Functions
 
 def blood_group_change(blood_enum):
     if blood_enum == BloodGroupEnum.a_negative:
@@ -31,7 +32,7 @@ def blood_group_change_reverse(blood_group):
     if blood_group == "B+":
         return BloodGroupEnum.b_positive
 
-
+# Helps determining the privacy setting of a user
 def privacy_helper(privacy):
     if privacy == PrivacyEnum.public:
         return "public"

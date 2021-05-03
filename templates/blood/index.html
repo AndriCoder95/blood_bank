@@ -70,10 +70,12 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-taller">
                         <form class="input-group" id="queryForm">
                             <div class="form-outline" style="padding-right:5%">
+                                <!-- input location where the user wants to look for donors! -->
                                 <input type="search" id="homePageAddress" class="form-control" placeholder="Location"
                                     name="address" value="{{selected_values.address}}" />
                             </div>
                             <div class="form-group" style="padding-right:5%; min-width:200px;">
+                                <!-- input the blood type that the user is looking for! -->
                                 <select name="bloodType" class="custom-select" id="bloodTypeSelector">
                                     <option value="">Blood Group</option>
                                     <option {% if selected_values.blood_type=='O+' %} selected {% endif %} value="O+">O+
@@ -112,6 +114,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <!-- Display the in app.py defined properties to the user -->
                                     {% for donor in donors %}
                                         <!--Request contact details for private users -->
                                     <form action="/" method="post">

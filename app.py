@@ -44,7 +44,7 @@ def index():
             requested_user = User.query.filter_by(email=requested_user_email).first()
             if not requested_user:
                 flash("Invalid user")
-            # request the donor for his private information
+            # request the donor for his private information (request needs to be stored in database)
             else:
                 notification = Notification(
                     requesting_user=requesting_user, requested_to=requested_user
@@ -55,12 +55,15 @@ def index():
         except Exception as e:
             flash(str(e))
 
+    # Get the URL parameters bloodType and address
     queries = request.args
     blood_type_old = queries.get("bloodType")
     address = queries.get("address")
 
+    # Get random donors (exclude the own user id)
     random_donors = User.query.order_by(func.random()).filter(User.id != user_id)
 
+    # Filter the list of random donors according to the user input, i.e. if he looks for a particular address or blood type
     if blood_type_old:
         blood_type = blood_group_change_reverse(blood_type_old)
         random_donors = random_donors.filter(User.blood_type == blood_type)
@@ -74,6 +77,8 @@ def index():
     random_donors = random_donors.limit(10)
 
     donors = []
+
+    # Go through the max. 10 random donors and decide which information to display to the user
     for donor in random_donors:
         donor_dict = {}
         donor_dict["blood_type"] = blood_group_change(donor.blood_type)
@@ -81,31 +86,39 @@ def index():
         donor_dict["email"] = donor.email
         privacy_state = privacy_helper(donor.privacy)
         donor_dict["privacy"] = privacy_state
+        # Handle the case where the displayed donors chose a public disclosure of their information
         if privacy_state == "public":
             donor_dict["address"] = donor.address
             donor_dict["contact"] = donor.contact
-        else:
 
+        # Handle cases where the displayed donors chose a private disclosure of their information
+        else:
             notification = Notification.query.filter_by(
                 requesting_user_id=g.user.id, requested_to_id=donor.id
             ).first()
+            # Handle the case where the user has already requested information from the donor
             if notification:
+                # Case where the donor did not yet respond to the users request
                 if notification.status == NotificationEnum.pending:
                     donor_dict["address"] = "Confidential"
                     donor_dict["contact"] = "Pending Request"
+                # case where the donor accepted the user request: display address and contact information
                 elif notification.status == NotificationEnum.accepted:
                     donor_dict["address"] = donor.address
                     donor_dict["contact"] = donor.contact
+            # Handle the case where the user did not yet ask the donor for displaying his contact details
             else:
                 donor_dict["address"] = "Confidential"
                 donor_dict["contact"] = "Request Information"
 
         donors.append(donor_dict)
 
+    # No value (empty string) in html form if the user this not search for a specific location
     if not address:
         address = ""
+    # Keep track of selected user input
     selected_values = {"blood_type": blood_type_old, "address": address}
-    # HTML template for home page.
+    # return HTML template for home page when visiting URL: .../. Adjusted according to specific user input
     return render_template(
         "blood/index.html", user=g.user, donors=donors, selected_values=selected_values
     )

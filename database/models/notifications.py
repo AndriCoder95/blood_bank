@@ -3,12 +3,12 @@ import datetime
 from database.models.user import User, BloodGroupEnum
 import enum
 
-
+# Notification status
 class NotificationEnum(enum.Enum):
     accepted = "accepted"
     pending = "pending"
 
-#Notification to request donor information
+# Notifications to request donor information
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
