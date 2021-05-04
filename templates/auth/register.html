@@ -32,23 +32,29 @@
           </div>
           <div class="row mt-2">
             <div class="col-12">
+                <!-- form which is sent via POST to the register.py file -->
               <form action="/auth/register" method="post" class="tm-login-form">
+                  <!-- Ask user for name -->
                 <div class="form-group">
                   <label for="fullname">Full Name</label>
                   <input type="text" name="fullName" class="form-control validate" id="fullname" value="" required />
                 </div>
+                  <!-- Ask user for email -->
                 <div class="form-group mt-3">
                   <label for="email">Email</label>
                   <input name="email" type="email" class="form-control validate" id="email" value="" required />
                 </div>
+                  <!-- Ask user for address -->
                 <div class="form-group">
                   <label for="address">Address</label>
                   <input name="address" type="text" class="form-control validate" id="address" value="" required />
                 </div>
+                  <!-- Ask user for contact number -->
                 <div class="form-group">
                   <label for="number">Contact Number</label>
                   <input name="contact" type="text" class="form-control validate" id="number" value="" required />
                 </div>
+                  <!-- Ask user for blood type -->
                 <div class="form-group">
                   <label for="bloodgroup">Blood Group</label>
                   <select name="bloodType" class="custom-select">
@@ -62,16 +68,19 @@
                     <option value="ab_negative">AB-</option>
                   </select>
                 </div>
+                  <!-- Ask user for password -->
                 <div class="form-group mt-3">
                   <label for="password">Password</label>
                   <input name="password" type="password" class="form-control validate" id="password" value=""
                     required />
                 </div>
+                  <!-- Ask user to repeat password -->
                 <div class="form-group mt-3">
                   <label for="passwordr">Repeat Password</label>
                   <input name="passwordr" type="password" class="form-control validate" id="passwordr" value=""
                     required />
                 </div>
+                  <!-- Submit button to register user with the input information -->
                 <div class="form-group mt-4">
                   <button type="submit" class="btn btn-primary btn-block text-uppercase">
                     Register
@@ -81,6 +90,7 @@
 
 
               </form>
+                <!-- Button to go back to the login page if user is already registered -->
               <a href="/auth/login" type="submit" class="btn btn-primary btn-block text-uppercase">
                 Already a member? Login
               </a>

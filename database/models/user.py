@@ -12,12 +12,12 @@ class BloodGroupEnum(enum.Enum):
     ab_positive = "AB+"
     ab_negative = "AB-"
 
-
+# state of the privacy settings by the user
 class PrivacyEnum(enum.Enum):
     public = "public"
     private = "private"
 
-
+# User class. Properties are stored in database. id as primary key
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(100), nullable=False)
