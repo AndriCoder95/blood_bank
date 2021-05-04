@@ -1,11 +1,12 @@
 {% extends "layout/layout.html" %}
 
-
+<!-- Adjust browser title tag -->
 {% block title %}Notification{% endblock %}
 
 {% block body %}
 
 <body id="reportsPage">
+    <!-- navbar of the user area, notifications tab active -->
   <nav class="navbar navbar-expand-xl">
     <div class="container h-100">
       <a class="navbar-brand" href="/">
@@ -58,6 +59,7 @@
         <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
           <h2 class="tm-block-title">Notification List</h2>
           <div class="tm-notification-items">
+            <!-- display all information from donors that accepted the disclosure request of the user -->
             {% if not accepted_requests %}
             <div class="alert alert-light" role="alert">
               No requested information left
@@ -101,7 +103,7 @@
                 </tr>
               </thead>
               <tbody>
-
+                <!-- display all unanswered requests -->
                 {% if not incoming_requests %}
                 <div class="alert alert-light" role="alert">
                   No incoming requests
@@ -113,6 +115,7 @@
                   <td class="tm-product-name">{{incoming_request.requesting_user.full_name}}</td>
                   <td>{{incoming_request.created_at}}</td>
                   <td>
+                      <!-- form to accept information requests. -->
                     <form action="/notification/" method="post">
                       <input style="display: none;" name="request_id" value={{incoming_request.id}} />
                       <button class="btn btn-primary text-uppercase mb-3" type="submit">Accept
