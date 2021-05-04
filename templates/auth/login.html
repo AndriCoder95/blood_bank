@@ -1,12 +1,13 @@
 {% extends "layout/layout.html" %}
 
-<!--Adapt the title tag -->
+<!--Adapt the title tag to login -->
 {% block title %}Login{% endblock %}
 
 {% block body %}
 
 <body>
   <div>
+      <!-- navbar, containing link to login page itself -->
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="login">
@@ -32,24 +33,28 @@
           </div>
           <div class="row mt-2">
             <div class="col-12">
-                <!--Form for login -->
+                <!--Form for login, supply user input via POST -->
               <form action="/auth/login" method="post" class="tm-login-form">
                 <div class="form-group">
+                    <!-- ask user to input email -->
                   <label for="username">Email</label>
                   <input name="email" type="email" name="email" class="form-control validate" id="email" value=""
                     required />
                 </div>
+                  <!-- ask user to input password -->
                 <div class="form-group mt-3">
                   <label for="password">Password</label>
                   <input name="password" type="password" name="password" class="form-control validate" id="password"
                     value="" required />
                 </div>
                 <div class="form-group mt-4">
+                    <!-- submit button to trigger action and provide input to the login.py file -->
                   <button type="submit" class="btn btn-primary btn-block text-uppercase">
                     Login
                   </button>
                 </div>
               </form>
+                <!-- Button to redirect user to register page, if he wants to register -->
               <a href="/auth/register" type="submit" class="btn btn-primary btn-block text-uppercase">
                 New member? Register
               </a>
