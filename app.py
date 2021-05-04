@@ -123,17 +123,21 @@ def index():
         "blood/index.html", user=g.user, donors=donors, selected_values=selected_values
     )
 
-
+# Account page. Frontend is based on layout.html and index.html in the templates folder
+# Reach this page by clicking on account in navbar
 @app.route("/account", methods=["GET", "POST"])
 def account():
     user_id = session.get("user_id")
+    # check if user is logged in, otherwise redirect to the login page
     if user_id is None:
         return redirect(url_for("login.login"))
 
+    # form submissions in accounts.html are sent by post method.
     if request.method == "POST":
         data = request.form
         user = User.query.filter_by(id=user_id).first()
 
+        # adjust user information in database
         try:
             user.email = data.get("email")
             user.full_name = data.get("fullName")
@@ -152,13 +156,17 @@ def account():
 
         g.user = user
 
+    # Display HTML template for the account url with the specific user information & input adaptions
     return render_template("blood/accounts.html", user=g.user)
 
+### Note that other routes (login, register, notification) were outsourced as python files to the views folder!
 
+# Run the app (here in debug mode)
 if __name__ == "__main__":
     from database.models.user import User
     from database.models.notifications import Notification
 
+    # create temporary database in tmp folder
     with app.app_context():
         db.create_all()
     app.run(debug=True, port=8000)

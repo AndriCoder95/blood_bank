@@ -1,12 +1,13 @@
 {% extends "layout/layout.html" %}
 
-
+<!-- change the title tag in the browser -->
 {% block title %}Account{% endblock %}
 
 {% block body %}
 
 
 <body id="reportsPage">
+<!-- navbar similar to other pages just with another icon highlighted, containing links to other directories -->
   <nav class="navbar navbar-expand-xl">
     <div class="container h-100">
       <a class="navbar-brand" href="/">
@@ -59,7 +60,9 @@
         <div class="col-12 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-settings">
             <h2 class="tm-block-title">Account Settings</h2>
+            <!-- Form whose inputs are sent with the POST method -->
             <form action="/account" class="tm-signup-form row" method="post">
+                <!-- Check if account information is private or public and display accordingly -->
               <div class="form-group col-lg-6">
                 <label for="privacy">Keep Account Private or Public?</label>
                 <div class="form-check">
@@ -77,19 +80,22 @@
                   </label>
                 </div>
               </div>
+                <!-- Account name -->
               <div class="form-group col-lg-6">
                 <label for="name">Account Name</label>
                 <input id="name" name="fullName" type="text" value="{{user.full_name}}" class="form-control validate" />
               </div>
+                <!-- Display Account email -->
               <div class="form-group col-lg-6">
                 <label for="email">Account Email</label>
                 <input id="email" name="email" type="email" value="{{user.email}}" class="form-control validate" />
               </div>
-
+                <!-- Display phone number -->
               <div class="form-group col-lg-6">
                 <label for="phone">Phone</label>
                 <input id="phone" name="contact" type="tel" class="form-control validate" value="{{user.contact}}" />
               </div>
+            <!-- Dropdown-menu displaying the chosen blood type -->
               <div class="form-group col-lg-6">
                 <label for="bloodgroup">Blood Group</label>
                 <select name="bloodType" class="custom-select">
@@ -117,12 +123,14 @@
                     {% endif %}>AB-</option>
                 </select>
               </div>
+            <!-- Display the address -->
               <div class="form-group col-12">
                 <label for="name">Address</label>
                 <input id="address" name="address" type="text" value="{{user.address}}" class="form-control validate" />
               </div>
               <div class="form-group col-12">
                 <label class="tm-hide-sm">&nbsp;</label>
+                  <!-- Button to submit account setting changes -->
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">
                   Update Your Profile
                 </button>
