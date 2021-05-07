@@ -14,7 +14,7 @@ Python Libraries: appdirs v1.4.4, black v20.8b1, click v7.1.2, Flask v1.1.2, Fla
 
 •	Open command prompt or terminal and go to the project directory
 
-•	Enter the following commands
+•	Enter the following commands (virtual environment is recommended but not necessary)
 
    o	python -m pip install -r requirements.txt
    
@@ -25,3 +25,9 @@ Python Libraries: appdirs v1.4.4, black v20.8b1, click v7.1.2, Flask v1.1.2, Fla
 http://127.0.0.1:8000/
 
 •	The login page is visible, and the interface can be used.
+
+•   More information about the usage of the application can be found here:
+
+   o	short video tutorial: https://www.dropbox.com/s/61tpdz0h4fi4yry/tutorialBloodBank.mov?dl=0
+   
+   o	paper with brief instructions: https://www.dropbox.com/s/bllqsyb558n5gop/Blood-Bank-DB-Project-Report.pdf?dl=0
